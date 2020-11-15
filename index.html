@@ -15,7 +15,7 @@
 
   <h1>No McDonald's, We Have Food At Home!</h1>
   <div class="nav-bar">
-    <ul>
+    <ul id="pg-buttons-list">
       <li class="pg-button"><a href="index.html" class="pg-link">Home</a></li>
       <li class="pg-button"><a href="about-us.html" class="pg-link">About the Creators</a></li>
     </ul>
@@ -50,64 +50,54 @@
 
   <!-- <script src="js/script.js"></script> -->
   <script>
+    document.getElementById('searchBtn').addEventListener('click', fetchUserData);
+    function fetchUserData(){
+      var ing1 = document.getElementById('ingredient1').value;
+      var ing2 = document.getElementById('ingredient2').value;
+      var ing3 = document.getElementById('ingredient3').value;
+      var ing4 = document.getElementById('ingredient4').value;
+      var ing5 = document.getElementById('ingredient5').value;
+      var q = ing1 + '+' + ing2 + '+' + ing3 + '+' + ing4 + '+' + ing5;
 
-function getInput(){
-   var ing1 = document.getElementById('ingredient1').value;
-   var ing2 = document.getElementById('ingredient2').value;
-   var ing3 = document.getElementById('ingredient3').value;
-   var ing4 = document.getElementById('ingredient4').value;
-   var ing5 = document.getElementById('ingredient5').value;
-   var q = ing1 + '+' + ing2 + '+' + ing3 + '+' + ing4 + '+' + ing5;
-   return q;
- }
-// var return_val = getInput()
+      if (q === "++++")
+      {
+        q = "mcrib";
+      }
 
+      let params = {
+        
+        "q": q,
+        "app_id": "5b19fdf7",
+        "app_key": "eafbd544aa8011983b3ee231e40a8c86",
+        "from": "0",
+        "to": "10"
+      };
 
-// var ing1 = document.getElementByID('ingredient1').value;
-let params = {
-  "q": "pizza",
-  "app_id": "5b19fdf7",
-  "app_key": "eafbd544aa8011983b3ee231e40a8c86",
-  "from": "0",
-  "to": "10"
-};
+      //"https://api.edamam.com/search?q=chicken+pasta+basil+++&app_id=5b19fdf7&app_key=eafbd544aa8011983b3ee231e40a8c86&from=0&to=3"
 
-//"https://api.edamam.com/search?q=chicken+pasta+basil+++&app_id=5b19fdf7&app_key=eafbd544aa8011983b3ee231e40a8c86&from=0&to=3"
+      let query = Object.keys(params).map(k => encodeURIComponent(k) + '=' + encodeURIComponent(params[k])).join('&');
 
-let query = Object.keys(params).map(k => encodeURIComponent(k) + '=' + encodeURIComponent(params[k])).join('&');
-
-let url = 'https://api.edamam.com/search?' + query
-
-document.getElementById('searchBtn').addEventListener('click', fetchUserData);
-
-function fetchUserData(){
-  fetch(url)
-      .then(response => response.json())
-      .then(json => {
+      let url = 'https://api.edamam.com/search?' + query
+      fetch(url)
+        .then(response => response.json())
+        .then(json => {
           let output = '<h2>Lists of Recipes</h2>';
-          output += '<ul>';
-          // let hits = json.hits;
+          output += '<ul id="recipe-list">';
           json.hits.forEach(function(hit) {
-              output += `
-                  <div class="recipe-box">
-                    <img src="${hit.recipe.image}" class="recipe-image">
-                    <li class="recipe">
-                        <a href="${hit.recipe.url}" class="recipe-link" target="_blank">
-                        ${hit.recipe.label}</a>
-                    </li>
-                  </div>
-              `;
+            output += `
+              <div class="recipe-box">
+                <img src="${hit.recipe.image}" class="recipe-image">
+                <li class="recipe">
+                  <a href="${hit.recipe.url}" class="recipe-link" target="_blank">
+                  ${hit.recipe.label}</a>
+                </li>
+              </div>
+            `;
           });
           output += '</ul>'
           document.getElementById("response").innerHTML = output;
-      });
-}
-
-
-
-
-
-
+        });
+    }
   </script>
   
 </body>

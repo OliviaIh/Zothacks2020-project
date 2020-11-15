@@ -113,6 +113,7 @@ p    {
 
 #ingredient-input {
   border: 3px solid seagreen;
+  border-radius: 5px;
   margin: auto;
   margin-top: 20px;
   width: 50%;
@@ -129,11 +130,26 @@ p    {
   align-content: center;
 }
 
+#recipe-list {
+  display: block;
+  margin: auto;
+  padding: 0px;
+}
+
+#pg-buttons-list {
+  padding: 0;
+  text-align: center;
+}
+
 .recipe-box{
   width: 50%;
   margin: auto;
+  margin-top: 15px;
   border: 3px solid seagreen;
+  border-radius: 5px;
   align-items: center;
+  padding: 10px 10px;
+
 }
 
 .recipe{
@@ -148,8 +164,10 @@ p    {
   height: auto;
   display: block;
   margin: auto;
+  margin-bottom: 8px;
 }
 
 .recipe-link {
   color: seagreen;
+  padding: 8px 0px;
 }
