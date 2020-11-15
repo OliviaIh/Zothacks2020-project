@@ -15,7 +15,7 @@
 
   <h1>No McDonald's, We Have Food At Home!</h1>
   <div class="nav-bar">
-    <ul>
+    <ul id="pg-buttons-list">
       <li class="pg-button"><a href="index.html" class="pg-link">Home</a></li>
       <li class="pg-button"><a href="about-us.html" class="pg-link">About the Creators</a></li>
     </ul>
@@ -25,25 +25,86 @@
     <p>*A ZotHacks 2020 project*</p>
     <p>Need to cook at home but only have random ingredients?<br>Enter what you have below to find recipes!</p>
   </div>
+
   <div id="ingredient-input">
     <h2>Input up to 5 ingredients:</h2>
     <form>
-      <input type="text" class="ingredient" id="ingredient1" name="ingredient1"><br>
-      <input type="text" class="ingredient" id="ingredient2" name="ingredient2"><br>
-      <input type="text" class="ingredient" id="ingredient3" name="ingredient3"><br>
-      <input type="text" class="ingredient" id="ingredient4" name="ingredient4"><br>
-      <input type="text" class="ingredient" id="ingredient5" name="ingredient5"><br>
-      <input type="submit" class="button" value="Search"><br>
+      <input type="text" class="ingredient" id="ingredient1" name="ingredient1" placeholder="Ingredient 1"><br>
+      <input type="text" class="ingredient" id="ingredient2" name="ingredient2" placeholder="Ingredient 2"><br>
+      <input type="text" class="ingredient" id="ingredient3" name="ingredient3" placeholder="Ingredient 3"><br>
+      <input type="text" class="ingredient" id="ingredient4" name="ingredient4" placeholder="Ingredient 4"><br>
+      <input type="text" class="ingredient" id="ingredient5" name="ingredient5" placeholder="Ingredient 5"><br>
+
+      <!-- <input type="submit" class="button" value="Search"><br> -->
+      <!-- <button onclick="searchBtn">Search</button> -->
     </form>
+
+    <div>
+        <button id="searchBtn" class="button">Search</button>
+    </div>
+    <!-- <hr> -->
+    <!--<div id="response"></div>-->
+
   </div>
+  <div id="response"></div>
+
+  <!-- <script src="js/script.js"></script> -->
+  <script>
+    document.getElementById('searchBtn').addEventListener('click', fetchUserData);
+    function fetchUserData(){
+      var ing1 = document.getElementById('ingredient1').value;
+      var ing2 = document.getElementById('ingredient2').value;
+      var ing3 = document.getElementById('ingredient3').value;
+      var ing4 = document.getElementById('ingredient4').value;
+      var ing5 = document.getElementById('ingredient5').value;
+      var q = ing1 + '+' + ing2 + '+' + ing3 + '+' + ing4 + '+' + ing5;
+
+      if (q === "++++")
+      {
+        q = "mcrib";
+      }
+
+      let params = {
+        
+        "q": q,
+        "app_id": "5b19fdf7",
+        "app_key": "eafbd544aa8011983b3ee231e40a8c86",
+        "from": "0",
+        "to": "10"
+      };
+
+      //"https://api.edamam.com/search?q=chicken+pasta+basil+++&app_id=5b19fdf7&app_key=eafbd544aa8011983b3ee231e40a8c86&from=0&to=3"
+
+      let query = Object.keys(params).map(k => encodeURIComponent(k) + '=' + encodeURIComponent(params[k])).join('&');
+
+      let url = 'https://api.edamam.com/search?' + query
+      fetch(url)
+        .then(response => response.json())
+        .then(json => {
+          let output = '<h2>Lists of Recipes</h2>';
+          output += '<ul id="recipe-list">';
+          json.hits.forEach(function(hit) {
+            output += `
+              <div class="recipe-box">
+                <img src="${hit.recipe.image}" class="recipe-image">
+                <li class="recipe">
+                  <a href="${hit.recipe.url}" class="recipe-link" target="_blank">
+                  ${hit.recipe.label}</a>
+                </li>
+              </div>
+            `;
+          });
+          output += '</ul>'
+          document.getElementById("response").innerHTML = output;
+        });
+    }
+  </script>
   
-  <div id="recipe-output">
-
-  </div>
-
-  <script src="js/script.js"></script>
 </body>
 
 </html> 
 
+
 <!-- https://api.edamam.com/search -->
+
+

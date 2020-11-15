@@ -31,7 +31,7 @@ h3 {
 
 p    {
 	color: mediumseagreen;
-	text-align: center; 
+	/*text-align: center;*/ 
 }
 
 .nav-bar {
@@ -62,6 +62,7 @@ p    {
   color: white;
   border-radius: 10px;
   text-decoration: none;
+  transition-duration: 0.3s;
 }
 
 .ingredient {
@@ -69,6 +70,10 @@ p    {
   padding: 5px 5px;
   margin: 8px 0px;
   font-size: 13pt;
+}
+
+.button:hover {
+  background-color: darkseagreen;
 }
 
 .button {
@@ -79,6 +84,9 @@ p    {
   padding: 10px 10px;
   margin: 8px 0px;
   font-size: 14pt;
+  border-radius: 4px;
+  transition-duration: 0.3s;
+  cursor: pointer;
 }
 
 .person-box {
@@ -88,6 +96,9 @@ p    {
   margin: auto;
   border-radius: 5px;
   margin-top: 20px;
+  text-align: left;
+  padding: 0px 8px;
+  /*font-size: 14pt;*/
 }
 
 #intro {
@@ -97,14 +108,66 @@ p    {
   border-radius: 5px;
   width: 75%;
   font-size: 20px;
+  text-align: center;
 }
 
 #ingredient-input {
   border: 3px solid seagreen;
+  border-radius: 5px;
   margin: auto;
   margin-top: 20px;
   width: 50%;
   text-align: center;
   padding: 10px 10px;
   list-style-position: inside;
+}
+
+#response{
+  display: block;
+  /*text-align: center;
+  color: seagreen;*/
+  margin: auto;
+  align-content: center;
+}
+
+#recipe-list {
+  display: block;
+  margin: auto;
+  padding: 0px;
+}
+
+#pg-buttons-list {
+  padding: 0;
+  text-align: center;
+}
+
+.recipe-box{
+  width: 50%;
+  margin: auto;
+  margin-top: 15px;
+  border: 3px solid seagreen;
+  border-radius: 5px;
+  align-items: center;
+  padding: 10px 10px;
+
+}
+
+.recipe{
+  list-style-type: none;
+  margin: auto;
+  text-align: center;
+}
+
+.recipe-image{
+  /*width: 180px;*/
+  width: 20%;
+  height: auto;
+  display: block;
+  margin: auto;
+  margin-bottom: 8px;
+}
+
+.recipe-link {
+  color: seagreen;
+  padding: 8px 0px;
 }
