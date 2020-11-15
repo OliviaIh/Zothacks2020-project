@@ -17,6 +17,7 @@
   <div class="nav-bar">
     <ul id="pg-buttons-list">
       <li class="pg-button"><a href="index.html" class="pg-link">Home</a></li>
+      <li class="pg-button"><a href="https://www.reddit.com/r/shittyfoodporn/" class="pg-link" target="_blank">Inspiration :)</a></li>
       <li class="pg-button"><a href="about-us.html" class="pg-link">About the Creators</a></li>
     </ul>
   </div>
@@ -24,6 +25,29 @@
     <p>Welcome to We Have Food At Home!</p>
     <p>*A ZotHacks 2020 project*</p>
     <p>Need to cook at home but only have random ingredients?<br>Enter what you have below to find recipes!</p>
+  </div>
+
+  <div>
+    <script>
+    
+    var memes = [
+      "https://i.kym-cdn.com/photos/images/newsfeed/001/479/663/ca3.png", //banana
+      "https://i.pinimg.com/736x/84/18/11/8418115299341956665cd3e36cb12f38.jpg", //rice
+      "https://i.imgflip.com/2zwkp6.jpg", //peeps
+      "https://ahseeit.com//king-include/uploads/2019/04/55811545_1113523868832086_1447982324707489998_n-4140753513.jpg", //bell cereal
+      "https://www.memecreator.org/static/images/memes/5016985.jpg", //batman
+      "https://lolsnaps.com/wp-content/uploads/2019/08/ezgif-3-f6ccc585301a.jpg", //fruits
+      "https://i.pinimg.com/736x/5b/e4/51/5be45165f928b92e03ead5f029c3ae2c.jpg", //bananadog
+      "https://pics.awwmemes.com/me-can-we-get-food-at-mcdonalds-mom-no-we-48415878.png", //popcheese
+      "https://i.kym-cdn.com/photos/images/original/001/482/788/1c5.jpg", //egg
+      "https://pics.awwmemes.com/me-mom-can-we-stop-at-mcdonalds-mom-no-we-have-48114338.png",//banana cheese
+      "https://pics.awwmemes.com/me-mom-can-we-get-food-mom-we-have-food-47750699.png", //pickle
+      "https://pics.me.me/me-mom-can-we-get-some-food-mom-no-we-48066376.png" //oj cereal
+    ];
+    var rand = Math.floor((Math.random() * memes.length) + 1);
+    var meme = memes[rand];
+    document.write('<img src="'+meme+'"class="meme"')
+    </script>
   </div>
 
   <div id="ingredient-input">
@@ -50,6 +74,8 @@
 
   <!-- <script src="js/script.js"></script> -->
   <script>
+
+    
     document.getElementById('searchBtn').addEventListener('click', fetchUserData);
     function fetchUserData(){
       var ing1 = document.getElementById('ingredient1').value;
